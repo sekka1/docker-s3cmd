@@ -13,6 +13,9 @@ a container.
 
         docker run --env aws_key=<AWS_KEY> --env aws_secret=<AWS_SECRET> --env cmd=sync-s3-to-local --env SRC_S3=s3://source.bucket/ -v /local/direcoty/:/opt/dest garland/s3cmd-container
 
+* Run interactively with s3cmd
           
-          
+        docker run -i -t --env aws_key=<AWS_KEY> --env aws_secret=<AWS_SECRET> --env cmd=sync-s3-to-local --env SRC_S3=s3://source.bucket/ -v /local/direcoty/:/opt/dest garland/s3cmd-container  /bin/bash
+       
+
           
