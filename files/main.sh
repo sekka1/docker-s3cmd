@@ -30,7 +30,7 @@ echo "access_key=${aws_key}" >> /.s3cfg
 echo "secret_key=${aws_secret}" >> /.s3cfg
 
 #
-# sync-restore - copy from s3 to local
+# sync-s3-to-local - copy from s3 to local
 #
 if [ "${cmd}" = "sync-s3-to-local" ]; then
     echo ${src-s3}
@@ -38,9 +38,13 @@ if [ "${cmd}" = "sync-s3-to-local" ]; then
 fi
 
 #
-# sync-backup - copy from local to s3
+# sync-local-to-s3 - copy from local to s3
 #
 if [ "${cmd}" = "sync-local-to-s3" ]; then
-    s3cmd sync /opt/src ${DEST_S3}
+    s3cmd sync /opt/src/ ${DEST_S3}
 fi
 
+#
+# Finished operations
+#
+echo "Finished s3cmd operations"
