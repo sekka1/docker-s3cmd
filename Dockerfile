@@ -2,7 +2,21 @@ FROM ubuntu:14.04
 
 # Update Ubuntu and install common packages
 RUN apt-get update -y
-RUN apt-get install -y s3cmd
+
+RUN apt-get install wget -y
+
+RUN apt-get install python-setuptools -y
+
+RUN apt-get install python-dateutil
+
+RUN wget http://sourceforge.net/projects/s3tools/files/s3cmd/1.5.0-rc1/s3cmd-1.5.0-rc1.tar.gz
+
+RUN tar xvfz s3cmd-1.5.0-rc1.tar.gz
+
+RUN cd s3cmd-1.5.0-rc1
+
+#this should just be python setup.py install, but needed to get put path first /s3cmd-1.5.0-rc1
+RUN python /s3cmd-1.5.0-rc1/setup.py install
 
 ADD files/s3cfg /.s3cfg
 ADD files/main.sh /main.sh

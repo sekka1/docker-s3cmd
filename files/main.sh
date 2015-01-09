@@ -41,7 +41,7 @@ fi
 # sync-local-to-s3 - copy from local to s3
 #
 if [ "${cmd}" = "sync-local-to-s3" ]; then
-    s3cmd sync /opt/src/ ${DEST_S3}
+    s3cmd -v --delete-removed sync /opt/src/ ${DEST_S3}
 fi
 
 #
