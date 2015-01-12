@@ -13,10 +13,7 @@ RUN wget http://sourceforge.net/projects/s3tools/files/s3cmd/1.5.0-rc1/s3cmd-1.5
 
 RUN tar xvfz s3cmd-1.5.0-rc1.tar.gz
 
-RUN cd s3cmd-1.5.0-rc1
-
-#this should just be python setup.py install, but needed to get put path first /s3cmd-1.5.0-rc1
-RUN python /s3cmd-1.5.0-rc1/setup.py install
+RUN cd /s3cmd-1.5.0-rc1 && python setup.py install
 
 ADD files/s3cfg /.s3cfg
 ADD files/main.sh /main.sh

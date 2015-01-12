@@ -29,6 +29,10 @@ echo "" >> /.s3cfg
 echo "access_key=${aws_key}" >> /.s3cfg
 echo "secret_key=${aws_secret}" >> /.s3cfg
 
+echo "Starting Sync"
+
+echo "`ls -la /opt/src/`"
+
 #
 # sync-s3-to-local - copy from s3 to local
 #
@@ -41,7 +45,8 @@ fi
 # sync-local-to-s3 - copy from local to s3
 #
 if [ "${cmd}" = "sync-local-to-s3" ]; then
-    s3cmd -v --delete-removed sync /opt/src/ ${DEST_S3}
+    echo ${DEST_S3}
+    s3cmd -c /.s3cfg -v --delete-removed sync /opt/src/ ${DEST_S3}
 fi
 
 #
