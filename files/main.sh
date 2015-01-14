@@ -42,14 +42,14 @@ fi
 #
 if [ "${cmd}" = "sync-s3-to-local" ]; then
     echo ${src-s3}
-    s3cmd sync ${SRC_S3} /opt/dest/
+    s3cmd --config=/.s3cfg  sync ${SRC_S3} /opt/dest/
 fi
 
 #
 # sync-local-to-s3 - copy from local to s3
 #
 if [ "${cmd}" = "sync-local-to-s3" ]; then
-    s3cmd sync /opt/src/ ${DEST_S3}
+    s3cmd --config=/.s3cfg sync /opt/src/ ${DEST_S3}
 fi
 
 #
