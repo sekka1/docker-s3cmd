@@ -30,6 +30,14 @@ echo "access_key=${aws_key}" >> /.s3cfg
 echo "secret_key=${aws_secret}" >> /.s3cfg
 
 #
+# Add region base host if it exist in the env vars
+#
+if [ ${s3_host_base} != "" ]; then
+  sed -i "s/host_base = s3.amazonaws.com/# host_base = s3.amazonaws.com/g" /.s3cfg
+  echo "host_base = ${s3_host_base}" >> /.s3cfg
+fi
+
+#
 # sync-s3-to-local - copy from s3 to local
 #
 if [ "${cmd}" = "sync-s3-to-local" ]; then
