@@ -11,7 +11,7 @@ a container.
     
 * Copy from `volumes-from` to S3:
 
-        docker run --env aws_key=<AWS_KEY> --env aws_secret=<AWS_SECRET> --env cmd=sync-vol-to-s3 --env DEST_S3=s3://destination.bucket/  -v /local/directory/:/opt/src -d garland/docker-s3cmd
+        docker run --env aws_key=<AWS_KEY> --env aws_secret=<AWS_SECRET> --env cmd=sync-vol-to-s3 --env DEST_S3=s3://destination.bucket/  --env SRC_VOL=/some/vol/path --volumes-from another_container  -d garland/docker-s3cmd
 
 
 * Copy from S3 to local:
