@@ -9,6 +9,11 @@ a container.
 
         docker run --env aws_key=<AWS_KEY> --env aws_secret=<AWS_SECRET> --env cmd=sync-local-to-s3 --env DEST_S3=s3://destination.bucket/  -v /local/directory/:/opt/src -d garland/docker-s3cmd
     
+* Copy from `volumes-from` to S3:
+
+        docker run --env aws_key=<AWS_KEY> --env aws_secret=<AWS_SECRET> --env cmd=sync-vol-to-s3 --env DEST_S3=s3://destination.bucket/  --env SRC_VOL=/some/vol/path --volumes-from another_container  -d paulosuzart/docker-s3cmd
+
+
 * Copy from S3 to local:
 
         docker run --env aws_key=<AWS_KEY> --env aws_secret=<AWS_SECRET> --env cmd=sync-s3-to-local --env SRC_S3=s3://source.bucket/ -v /local/direcoty/:/opt/dest garland/docker-s3cmd
@@ -17,5 +22,4 @@ a container.
           
         docker run -i -t --env aws_key=<AWS_KEY> --env aws_secret=<AWS_SECRET> --env cmd=sync-s3-to-local --env SRC_S3=s3://source.bucket/ -v /local/direcoty/:/opt/dest garland/docker-s3cmd  /bin/bash
        
-
           

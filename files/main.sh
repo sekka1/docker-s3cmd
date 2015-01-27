@@ -53,6 +53,14 @@ if [ "${cmd}" = "sync-local-to-s3" ]; then
 fi
 
 #
+# sync-vol-to-s3 - copy from local volumes-from to s3
+#
+if [ "${cmd}" = "sync-vol-to-s3" ]; then
+    s3cmd --config=/.s3cfg sync ${SRC_VOL} ${DEST_S3}
+fi
+
+
+#
 # Finished operations
 #
 echo "Finished s3cmd operations"
