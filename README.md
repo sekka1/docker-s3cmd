@@ -16,7 +16,8 @@ Using alpine docker image.  This image is 31MB.
         --env aws_secret=<AWS_SECRET> \
         --env cmd=sync-local-to-s3 \
         --env DEST_S3=s3://destination.bucket/  \
-        -v /local/directory/:/opt/src -d garland/docker-s3cmd
+        -v /local/directory/:/opt/src \
+        garland/docker-s3cmd
 
 * Change `/local/directory/` to file/folder you want to upload to S3
 
@@ -27,7 +28,8 @@ Using alpine docker image.  This image is 31MB.
         --env aws_secret=<AWS_SECRET> \
         --env cmd=sync-s3-to-local \
         --env SRC_S3=s3://source.bucket/ \
-        -v /local/directory/:/opt/dest garland/docker-s3cmd
+        -v /local/directory/:/opt/dest \
+        garland/docker-s3cmd
 
 * Change `/local/directory/` to the file/folder where you want to download the files from S3 to the local computer
 
