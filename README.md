@@ -5,7 +5,7 @@ s3cmd in a Docker container.  This is useful if you are already using Docker.
 You can simply pull this container to that Docker server and move things between the local box and S3 by just running
 a container.
 
-Using alpine docker image.  This image is 31MB.
+Using [Alpine linux](https://hub.docker.com/_/alpine/).  This image is 31MB.
 
 # Usage Instruction
 
