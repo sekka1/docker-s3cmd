@@ -1,8 +1,9 @@
-#!/bin/sh -x
+#!/bin/sh -xe
 
 #
 # main entry point to run s3cmd
 #
+S3CMD_PATH=/opt/s3cmd/s3cmd
 
 #
 # Check for required parameters
@@ -42,14 +43,14 @@ fi
 #
 if [ "${cmd}" = "sync-s3-to-local" ]; then
     echo ${src-s3}
-    s3cmd --config=/.s3cfg  sync ${SRC_S3} /opt/dest/
+    ${S3CMD_PATH} --config=/.s3cfg  sync ${SRC_S3} /opt/dest/
 fi
 
 #
 # sync-local-to-s3 - copy from local to s3
 #
 if [ "${cmd}" = "sync-local-to-s3" ]; then
-    s3cmd --config=/.s3cfg sync /opt/src/ ${DEST_S3}
+    ${S3CMD_PATH} --config=/.s3cfg sync /opt/src/ ${DEST_S3}
 fi
 
 #

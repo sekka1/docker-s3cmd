@@ -1,18 +1,22 @@
-FROM ubuntu:14.04
+FROM alpine:3.3
 
-# Update Ubuntu and install common packages
-RUN apt-get update -y
-RUN apt-get install -y s3cmd
+RUN apk update
+RUN apk add python py-pip py-setuptools git ca-certificates
+RUN pip install python-dateutil
 
-ADD files/s3cfg /.s3cfg
-ADD files/main.sh /main.sh
+RUN git clone https://github.com/s3tools/s3cmd.git /opt/s3cmd
+
+WORKDIR /opt
+
+ADD files/s3cfg /opt/.s3cfg
+ADD files/main.sh /opt/main.sh
 
 # Main entrypoint script
-RUN chmod 777 main.sh
+RUN chmod 777 /opt/main.sh
 
 # Folders for s3cmd optionations
 RUN mkdir /opt/src
 RUN mkdir /opt/dest
 
 WORKDIR /
-CMD ["/main.sh"]
+CMD ["/opt/main.sh"]
