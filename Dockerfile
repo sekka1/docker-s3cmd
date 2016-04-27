@@ -15,8 +15,7 @@ ADD files/main.sh /opt/main.sh
 RUN chmod 777 /opt/main.sh
 
 # Folders for s3cmd optionations
-RUN mkdir /opt/src
-RUN mkdir /opt/dest
+RUN mkdir /opt/src /opt/dest
 
 WORKDIR /
 CMD ["/opt/main.sh"]
