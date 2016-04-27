@@ -41,4 +41,11 @@ Using [Alpine linux](https://hub.docker.com/_/alpine/).  This image is 31MB.
         --env cmd=sync-s3-to-local \
         --env SRC_S3=s3://source.bucket/ \
         -v /local/direcoty/:/opt/dest \
-        garland/docker-s3cmd  /bin/bash
+        garland/docker-s3cmd /bin/sh
+
+# Development
+
+Build the container with:
+```
+docker build -t garland/docker-s3cmd .
+```
