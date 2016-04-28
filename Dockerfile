@@ -8,8 +8,8 @@ RUN git clone https://github.com/s3tools/s3cmd.git /opt/s3cmd
 
 WORKDIR /opt
 
-ADD files/s3cfg /opt/.s3cfg
-ADD files/main.sh /opt/main.sh
+ADD ./files/s3cfg /opt/.s3cfg
+ADD ./files/main.sh /opt/main.sh
 
 # Main entrypoint script
 RUN chmod 777 /opt/main.sh
