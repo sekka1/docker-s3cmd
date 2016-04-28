@@ -7,6 +7,8 @@ a container.
 
 Using [Alpine linux](https://hub.docker.com/_/alpine/).  This image is 31MB.
 
+You can find an automated build of this container on the Docker Hub: https://hub.docker.com/r/garland/docker-s3cmd/
+
 # Usage Instruction
 
 ## Copy from local to S3:
