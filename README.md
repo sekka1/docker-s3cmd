@@ -1,5 +1,12 @@
 docker-s3cmd
 ============
+[![GitHub forks](https://img.shields.io/github/forks/sekka1/docker-s3cmd.svg)](https://github.com/sekka1/docker-s3cmd/network)
+[![GitHub stars](https://img.shields.io/github/stars/sekka1/docker-s3cmd.svg)](https://github.com/sekka1/docker-s3cmd/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/sekka1/docker-s3cmd.svg)](https://github.com/sekka1/docker-s3cmd/issues)
+[![Twitter](https://img.shields.io/twitter/url/https/github.com/sekka1/docker-s3cmd.svg?style=social)](https://twitter.com/intent/tweet?text=S3cmd%20in%20a%20%40Docker%20container:&url=https://github.com/sekka1/docker-s3cmd)
+[![Docker Pulls](https://img.shields.io/docker/pulls/garland/docker-s3cmd.svg)](https://hub.docker.com/r/garland/docker-s3cmd/)
+[![Docker Stars](https://img.shields.io/docker/stars/garland/docker-s3cmd.svg)](https://hub.docker.com/r/garland/docker-s3cmd/)
+
 
 s3cmd in a Docker container.  This is useful if you are already using Docker.
 You can simply pull this container to that Docker server and move things between the local box and S3 by just running
