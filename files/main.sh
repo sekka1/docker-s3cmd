@@ -44,19 +44,26 @@ if [ "${s3_host_base}" != "" ]; then
   echo "host_base = ${s3_host_base}" >> /opt/.s3cfg
 fi
 
-#
-# sync-s3-to-local - copy from s3 to local
-#
-if [ "${cmd}" = "sync-s3-to-local" ]; then
-    echo ${src-s3}
-    ${S3CMD_PATH} ${S3CMD_OPTIONS} --config=/opt/.s3cfg sync ${SRC_S3} /opt/dest/
-fi
+# Chevk if we want to run in interactive mode or not
+if [ ${cmd} != "interactive" ]; then
 
-#
-# sync-local-to-s3 - copy from local to s3
-#
-if [ "${cmd}" = "sync-local-to-s3" ]; then
-    ${S3CMD_PATH} ${S3CMD_OPTIONS} --config=/opt/.s3cfg sync /opt/src/ ${DEST_S3}
+  #
+  # sync-s3-to-local - copy from s3 to local
+  #
+  if [ "${cmd}" = "sync-s3-to-local" ]; then
+      echo ${src-s3}
+      ${S3CMD_PATH} --config=/opt/.s3cfg  sync ${SRC_S3} /opt/dest/
+  fi
+
+  #
+  # sync-local-to-s3 - copy from local to s3
+  #
+  if [ "${cmd}" = "sync-local-to-s3" ]; then
+      ${S3CMD_PATH} --config=/opt/.s3cfg sync /opt/src/ ${DEST_S3}
+  fi
+else
+  # Copy file over to the default location where S3cmd is looking for the config file
+  cp /.s3cfg /root/
 fi
 
 #
