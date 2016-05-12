@@ -50,7 +50,24 @@ You can find an automated build of this container on the Docker Hub: https://hub
     -v ${LOCAL_FILE}:/opt/dest \
     garland/docker-s3cmd
 
-* Change `LOCAL_FILE` to the file/folder where you want to download the files from S3 to the local computer
+## Sign S3 url:
+
+    AWS_KEY=<YOUR AWS KEY>
+    AWS_SECRET=<YOUR AWS SECRET>
+    S3_URL=s3://bucket/path/to/file.txt
+    EXPIRY=+3600
+    
+    docker run \
+    --env aws_key=${AWS_KEY} \
+    --env aws_secret=${AWS_SECRET} \
+    --env cmd=sign-url \
+    --env s3_url=${BUCKET} \
+    --env expiry=${EXPIRY} \
+    -v ${LOCAL_FILE}:/opt/dest \
+    garland/docker-s3cmd
+
+* Change `S3_URL` to URL you want to be signed
+* If EXPIRY not set the default expiration date of two weeks will be set.
 
 ## Run interactively with s3cmd
 

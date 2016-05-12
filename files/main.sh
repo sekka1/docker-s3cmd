@@ -1,9 +1,17 @@
-#!/bin/sh -xe
+#!/bin/sh
+
+# Fail on errors
+set -e
 
 #
 # main entry point to run s3cmd
 #
 S3CMD_PATH=/opt/s3cmd/s3cmd
+
+# Display all commands unless no_verbose environment variable is set
+if [ -z "${no_verbose}" ]; then
+    set -x    
+fi
 
 #
 # Check for required parameters
@@ -33,12 +41,12 @@ echo "secret_key=${aws_secret}" >> /.s3cfg
 #
 # Add region base host if it exist in the env vars
 #
-if [ ${s3_host_base} != "" ]; then
+if [ "x${s3_host_base}" != "x" ]; then
   sed -i "s/host_base = s3.amazonaws.com/# host_base = s3.amazonaws.com/g" /.s3cfg
   echo "host_base = ${s3_host_base}" >> /.s3cfg
 fi
 
-# Chevk if we want to run in interactive mode or not
+# Check if we want to run in interactive mode or not
 if [ ${cmd} != "interactive" ]; then
 
   #
@@ -55,6 +63,20 @@ if [ ${cmd} != "interactive" ]; then
   if [ "${cmd}" = "sync-local-to-s3" ]; then
       ${S3CMD_PATH} --config=/.s3cfg sync /opt/src/ ${DEST_S3}
   fi
+  
+  if [ "${cmd}" = "sign-url" ]; then
+      if [ -z "${s3_url}" ]; then
+          echo "ERROR: The environment variable s3_url is not set."
+          exit 1
+      fi
+      if [ -z "${expiry}" ]; then
+          # If expiry not set expire URL in two weeks
+          expiry="+1209600"
+      fi
+
+      ${S3CMD_PATH} --config=/.s3cfg signurl ${s3_url} ${expiry}
+  fi
+  
 else
   # Copy file over to the default location where S3cmd is looking for the config file
   cp /.s3cfg /root/
@@ -63,4 +85,6 @@ fi
 #
 # Finished operations
 #
-echo "Finished s3cmd operations"
+if [ -z "${no_verbose}" ]; then
+   echo "Finished s3cmd operations"
+fi
