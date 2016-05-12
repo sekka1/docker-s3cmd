@@ -1,9 +1,17 @@
-#!/bin/sh -xe
+#!/bin/sh
+
+# Fail on errors
+set -e
 
 #
 # main entry point to run s3cmd
 #
 S3CMD_PATH=/opt/s3cmd/s3cmd
+
+# Display all commands unless no_verbose environment variable is set
+if [ -z "${no_verbose}" ]; then
+    set -x    
+fi
 
 #
 # Check for required parameters
@@ -63,4 +71,6 @@ fi
 #
 # Finished operations
 #
-echo "Finished s3cmd operations"
+if [ -z "${no_verbose}" ]; then
+   echo "Finished s3cmd operations"
+fi
