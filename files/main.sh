@@ -33,7 +33,7 @@ echo "secret_key=${aws_secret}" >> /.s3cfg
 #
 # Add region base host if it exist in the env vars
 #
-if [ ${s3_host_base} != "" ]; then
+if [ "x${s3_host_base}" != "x" ]; then
   sed -i "s/host_base = s3.amazonaws.com/# host_base = s3.amazonaws.com/g" /.s3cfg
   echo "host_base = ${s3_host_base}" >> /.s3cfg
 fi
