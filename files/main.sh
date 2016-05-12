@@ -63,6 +63,20 @@ if [ ${cmd} != "interactive" ]; then
   if [ "${cmd}" = "sync-local-to-s3" ]; then
       ${S3CMD_PATH} --config=/.s3cfg sync /opt/src/ ${DEST_S3}
   fi
+  
+  if [ "${cmd}" = "sign-url" ]; then
+      if [ -z "${s3_url}" ]; then
+          echo "ERROR: The environment variable s3_url is not set."
+          exit 1
+      fi
+      if [ -z "${expiry}" ]; then
+          # If expiry not set expire URL in two weeks
+          expiry="+1209600"
+      fi
+
+      ${S3CMD_PATH} --config=/.s3cfg signurl ${s3_url} ${expiry}
+  fi
+  
 else
   # Copy file over to the default location where S3cmd is looking for the config file
   cp /.s3cfg /root/
