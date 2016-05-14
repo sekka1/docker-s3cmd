@@ -38,7 +38,7 @@ if [ ${s3_host_base} != "" ]; then
   echo "host_base = ${s3_host_base}" >> /.s3cfg
 fi
 
-# Chevk if we want to run in interactive mode or not
+# Check if we want to run in interactive mode or not
 if [ ${cmd} != "interactive" ]; then
 
   #
