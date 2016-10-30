@@ -33,13 +33,13 @@ echo "secret_key=${aws_secret}" >> /.s3cfg
 #
 # Add region base host if it exist in the env vars
 #
-if [ ${s3_host_base} != "" ]; then
+if [ "${s3_host_base}" != "" ]; then
   sed -i "s/host_base = s3.amazonaws.com/# host_base = s3.amazonaws.com/g" /.s3cfg
   echo "host_base = ${s3_host_base}" >> /.s3cfg
 fi
 
 # Chevk if we want to run in interactive mode or not
-if [ ${cmd} != "interactive" ]; then
+if [ "${cmd}" != "interactive" ]; then
 
   #
   # sync-s3-to-local - copy from s3 to local
