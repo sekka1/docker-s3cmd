@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM docker.otenv.com/ot-ubuntu:latest
 
 # Update Ubuntu and install common packages
 RUN apt-get update -y
