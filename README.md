@@ -8,6 +8,9 @@ docker-s3cmd
 [![Docker Stars](https://img.shields.io/docker/stars/garland/docker-s3cmd.svg)](https://hub.docker.com/r/garland/docker-s3cmd/)
 
 
+- [`0.1` (*0.1/Dockerfile*)](https://github.com/sekka1/docker-s3cmd/blob/master/0.1/Dockerfile)
+
+
 s3cmd in a Docker container.  This is useful if you are already using Docker.
 You can simply pull this container to that Docker server and move things between the local box and S3 by just running
 a container.
