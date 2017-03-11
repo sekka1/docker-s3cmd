@@ -28,8 +28,12 @@ fi
 # Replace key and secret in the /.s3cfg file with the one the user provided
 #
 echo "" >> /.s3cfg
-echo "access_key=${aws_key}" >> /.s3cfg
-echo "secret_key=${aws_secret}" >> /.s3cfg
+echo "access_key = ${aws_key}" >> /.s3cfg
+echo "secret_key = ${aws_secret}" >> /.s3cfg
+
+if [ -z "${security_token}" ]; then
+    echo "security_token = ${aws_security_token}" >> /.s3cfg
+fi
 
 #
 # Add region base host if it exist in the env vars
