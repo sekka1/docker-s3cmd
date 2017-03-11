@@ -25,6 +25,12 @@ You can find an automated build of this container on the Docker Hub: https://hub
 
 # Usage Instruction
 
+## Optional inputs
+If access for your instance, task, etc. is configured through an IAM role you may omit the following inputs:
+
+    AWS_KEY=<YOUR AWS KEY>
+    AWS_SECRET=<YOUR AWS SECRET>  
+
 ## Copy from local to S3:
 
     AWS_KEY=<YOUR AWS KEY>

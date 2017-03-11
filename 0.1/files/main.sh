@@ -9,13 +9,14 @@ S3CMD_PATH=/opt/s3cmd/s3cmd
 # Check for required parameters
 #
 if [ -z "${aws_key}" ]; then
-    echo "ERROR: The environment variable key is not set."
-    exit 1
+    echo "ERROR: The environment variable key is not set. Attempting to create empty creds file to use role."
+    aws_key=""
 fi
 
 if [ -z "${aws_secret}" ]; then
     echo "ERROR: The environment variable secret is not set."
-    exit 1
+    aws_secret=""
+    security_token=""
 fi
 
 if [ -z "${cmd}" ]; then
