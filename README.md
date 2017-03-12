@@ -1,16 +1,16 @@
 docker-s3cmd
 ============
-[![GitHub forks](https://img.shields.io/github/forks/zambien/docker-s3cmd.svg)](https://github.com/zambien/docker-s3cmd/network)
-[![GitHub stars](https://img.shields.io/github/stars/zambien/docker-s3cmd.svg)](https://github.com/zambien/docker-s3cmd/stargazers)
-[![GitHub issues](https://img.shields.io/github/issues/zambien/docker-s3cmd.svg)](https://github.com/zambien/docker-s3cmd/issues)
-[![Twitter](https://img.shields.io/twitter/url/https/github.com/zambien/docker-s3cmd.svg?style=social)](https://twitter.com/intent/tweet?text=S3cmd%20in%20a%20%40Docker%20container:&url=https://github.com/zambien/docker-s3cmd)
-[![Docker Pulls](https://img.shields.io/docker/pulls/zambien/docker-s3cmd.svg)](https://hub.docker.com/r/zambien/docker-s3cmd/)
-[![Docker Stars](https://img.shields.io/docker/stars/zambien/docker-s3cmd.svg)](https://hub.docker.com/r/zambien/docker-s3cmd/)
+[![GitHub forks](https://img.shields.io/github/forks/sekka1/docker-s3cmd.svg)](https://github.com/sekka1/docker-s3cmd/network)
+[![GitHub stars](https://img.shields.io/github/stars/sekka1/docker-s3cmd.svg)](https://github.com/sekka1/docker-s3cmd/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/sekka1/docker-s3cmd.svg)](https://github.com/sekka1/docker-s3cmd/issues)
+[![Twitter](https://img.shields.io/twitter/url/https/github.com/sekka1/docker-s3cmd.svg?style=social)](https://twitter.com/intent/tweet?text=S3cmd%20in%20a%20%40Docker%20container:&url=https://github.com/sekka1/docker-s3cmd)
+[![Docker Pulls](https://img.shields.io/docker/pulls/garland/docker-s3cmd.svg)](https://hub.docker.com/r/garland/docker-s3cmd/)
+[![Docker Stars](https://img.shields.io/docker/stars/garland/docker-s3cmd.svg)](https://hub.docker.com/r/garland/docker-s3cmd/)
 
 
 # Supported tags and respective `Dockerfile` links
 
-- [`0.1` (*0.1/Dockerfile*)](https://github.com/zambien/docker-s3cmd/blob/master/0.1/Dockerfile)
+- [`0.1` (*0.1/Dockerfile*)](https://github.com/sekka1/docker-s3cmd/blob/master/0.1/Dockerfile)
 
 
 # Description
@@ -21,7 +21,7 @@ a container.
 
 Using [Alpine linux](https://hub.docker.com/_/alpine/).  This image is 31MB.
 
-You can find an automated build of this container on the Docker Hub: https://hub.docker.com/r/zambien/docker-s3cmd/
+You can find an automated build of this container on the Docker Hub: https://hub.docker.com/r/garland/docker-s3cmd/
 
 # Usage Instruction
 
@@ -35,7 +35,7 @@ If access for your instance, task, etc. is configured through an IAM role you ma
 
     AWS_KEY=<YOUR AWS KEY>
     AWS_SECRET=<YOUR AWS SECRET>
-    BUCKET=s3://zambien.public.bucket/database2/
+    BUCKET=s3://garland.public.bucket/database2/
     LOCAL_FILE=/tmp/database
 
     docker run \
@@ -44,7 +44,7 @@ If access for your instance, task, etc. is configured through an IAM role you ma
     --env cmd=sync-local-to-s3 \
     --env DEST_S3=${BUCKET}  \
     -v ${LOCAL_FILE}:/opt/src \
-    zambien/docker-s3cmd
+    garland/docker-s3cmd
 
 * Change `LOCAL_FILE` to file/folder you want to upload to S3
 
@@ -52,7 +52,7 @@ If access for your instance, task, etc. is configured through an IAM role you ma
 
     AWS_KEY=<YOUR AWS KEY>
     AWS_SECRET=<YOUR AWS SECRET>
-    BUCKET=s3://zambien.public.bucket/database
+    BUCKET=s3://garland.public.bucket/database
     LOCAL_FILE=/tmp
 
     docker run \
@@ -61,7 +61,7 @@ If access for your instance, task, etc. is configured through an IAM role you ma
     --env cmd=sync-s3-to-local \
     --env SRC_S3=${BUCKET} \
     -v ${LOCAL_FILE}:/opt/dest \
-    zambien/docker-s3cmd
+    garland/docker-s3cmd
 
 * Change `LOCAL_FILE` to the file/folder where you want to download the files from S3 to the local computer
 
@@ -75,7 +75,7 @@ If access for your instance, task, etc. is configured through an IAM role you ma
     --env aws_secret=${AWS_SECRET} \
     --env cmd=interactive \
     -v /:/opt/dest \
-    zambien/docker-s3cmd /bin/sh
+    garland/docker-s3cmd /bin/sh
 
 Then execute the `main.sh` script to setup the s3cmd config file
 
