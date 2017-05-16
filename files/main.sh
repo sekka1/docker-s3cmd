@@ -9,13 +9,14 @@ S3CMD_PATH=/opt/s3cmd/s3cmd
 # Check for required parameters
 #
 if [ -z "${aws_key}" ]; then
-    echo "ERROR: The environment variable key is not set."
-    exit 1
+    echo "The environment variable key is not set. Attempting to create empty creds file to use role."
+    aws_key=""
 fi
 
 if [ -z "${aws_secret}" ]; then
-    echo "ERROR: The environment variable secret is not set."
-    exit 1
+    echo "The environment variable secret is not set."
+    aws_secret=""
+    security_token=""
 fi
 
 if [ -z "${cmd}" ]; then
@@ -27,8 +28,12 @@ fi
 # Replace key and secret in the /.s3cfg file with the one the user provided
 #
 echo "" >> /.s3cfg
-echo "access_key=${aws_key}" >> /.s3cfg
-echo "secret_key=${aws_secret}" >> /.s3cfg
+echo "access_key = ${aws_key}" >> /.s3cfg
+echo "secret_key = ${aws_secret}" >> /.s3cfg
+
+if [ -z "${security_token}" ]; then
+    echo "security_token = ${aws_security_token}" >> /.s3cfg
+fi
 
 #
 # Add region base host if it exist in the env vars
