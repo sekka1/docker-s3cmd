@@ -28,52 +28,56 @@ You can find an automated build of this container on the Docker Hub: https://hub
 ## Optional inputs
 If access for your instance, task, etc. is configured through an IAM role you may omit the following inputs:
 
-    AWS_KEY=<YOUR AWS KEY>
-    AWS_SECRET=<YOUR AWS SECRET>  
+    AWS_ACCESS_KEY=<YOUR AWS KEY>
+    AWS_SECRET_KEY=<YOUR AWS SECRET>  
 
 ## Copy from local to S3:
 
-    AWS_KEY=<YOUR AWS KEY>
-    AWS_SECRET=<YOUR AWS SECRET>
-    BUCKET=s3://garland.public.bucket/database2/
+    AWS_ACCESS_KEY=<YOUR AWS KEY>
+    AWS_SECRET_KEY=<YOUR AWS SECRET>
+    S3_BUCKET=garland-bucket
+    SRC_S3=s3folder
     LOCAL_FILE=/tmp/database
 
     docker run \
-    --env aws_key=${AWS_KEY} \
-    --env aws_secret=${AWS_SECRET} \
-    --env cmd=sync-local-to-s3 \
-    --env DEST_S3=${BUCKET}  \
+    --env AWS_ACCESS_KEY=${AWS_ACCESS_KEY} \
+    --env AWS_SECRET_KEY=${AWS_SECRET_KEY} \
+    --env S3_CMD=sync-local-to-s3 \
+    --env S3_BUCKET=${S3_BUCKET}  \
+    --env SRC_S3=${SRC_S3} \
     -v ${LOCAL_FILE}:/opt/src \
     garland/docker-s3cmd
 
-* Change `LOCAL_FILE` to file/folder you want to upload to S3
+* Change `LOCAL_FILE` to file/folder you want to upload to S3.
 
 ## Copy from S3 to local:
 
-    AWS_KEY=<YOUR AWS KEY>
-    AWS_SECRET=<YOUR AWS SECRET>
-    BUCKET=s3://garland.public.bucket/database
+    AWS_ACCESS_KEY=<YOUR AWS KEY>
+    AWS_SECRET_KEY=<YOUR AWS SECRET>
+    S3_BUCKET=garland-bucket
+    SRC_S3=s3folder
     LOCAL_FILE=/tmp
 
     docker run \
-    --env aws_key=${AWS_KEY} \
-    --env aws_secret=${AWS_SECRET} \
-    --env cmd=sync-s3-to-local \
-    --env SRC_S3=${BUCKET} \
+    --env AWS_ACCESS_KEY=${AWS_ACCESS_KEY} \
+    --env AWS_SECRET_KEY=${AWS_SECRET_KEY} \
+    --env S3_CMD=sync-s3-to-local \
+    --env S3_BUCKET=${S3_BUCKET} \
+    --env SRC_S3=${SRC_S3} \
     -v ${LOCAL_FILE}:/opt/dest \
     garland/docker-s3cmd
 
-* Change `LOCAL_FILE` to the file/folder where you want to download the files from S3 to the local computer
+* Change `LOCAL_FILE` to the file/folder where you want to download the files from S3 to the local computer. When using this option, it automatically grabs the latest back up from S3 in that bucket.
 
 ## Run interactively with s3cmd
 
-    AWS_KEY=<YOUR AWS KEY>
-    AWS_SECRET=<YOUR AWS SECRET>
+    AWS_ACCESS_KEY=<YOUR AWS KEY>
+    AWS_SECRET_KEY=<YOUR AWS SECRET>
 
     docker run -it \
-    --env aws_key=${AWS_KEY} \
-    --env aws_secret=${AWS_SECRET} \
-    --env cmd=interactive \
+    --env AWS_ACCESS_KEY=${AWS_ACCESS_KEY} \
+    --env AWS_SECRET_KEY=${AWS_SECRET_KEY} \
+    --env S3_CMD=interactive \
     -v /:/opt/dest \
     garland/docker-s3cmd /bin/sh
 
